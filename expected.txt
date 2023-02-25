@@ -1,8 +1,0 @@
-Number of nodes in a graph : 5
-Number of edges in a graph : 6
-a -> b
-a -> e
-b -> c
-c -> d
-d -> e
-e -> a
