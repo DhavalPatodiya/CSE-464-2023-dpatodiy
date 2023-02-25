@@ -1,0 +1,18 @@
+
+`	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(Â»æÉÿÿÿÿÿ
+[	java:S112B"FDefine and throw a dedicated exception instead of using a generic one.(Ü¼µä
+b
+java:S2095D"LUse try-with-resources or close this "BufferedWriter" in a "finally" clause.(¤›ÿÁ
+b
+java:S2095"LUse try-with-resources or close this "BufferedWriter" in a "finally" clause.(¤›ÿÁ
+V	java:S125]"<This block of commented-out lines of code should be removed.(õ÷Íûÿÿÿÿ
+S
+java:S1128"=Remove this unused import 'guru.nidi.graphviz.engine.Format'.(ÎÂÖÈ
+Z
+java:S1128"?Remove this unused import 'guru.nidi.graphviz.engine.Graphviz'.(®ÅÌ¤ÿÿÿÿÿ
+H
+java:S1128"2Remove this unused import 'javax.imageio.ImageIO'.(‘çÔû
+;
+java:S1128"%Remove this unused import 'java.awt'.(ï´µ©
+T
+java:S1128"9Remove this unused import 'java.awt.image.BufferedImage'.(×íÐ‡þÿÿÿÿ
