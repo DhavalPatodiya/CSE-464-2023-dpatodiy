@@ -4,7 +4,22 @@ import java.util.List;
 import java.util.Queue;
 
 public class Path {
-    public String graphSearch( Graph g, String src, String dst){
+    public String path = null;
+
+    public Path(){
+
+    }
+
+    public Path(String path){
+        this.path = path;
+    }
+
+    @Override
+    public String toString(){
+        return path;
+    }
+
+    public Path graphSearch( Graph g, String src, String dst){
         if(!(g.map.containsKey(src) && g.map.containsKey(dst)))
             return null;
 
@@ -53,7 +68,7 @@ public class Path {
             sb = sb.deleteCharAt(sb.length()-1);
         }
 
-        return pathFound == null ? null : sb.toString();
+        return pathFound == null ? null : new Path(sb.toString());
 
     }
 }

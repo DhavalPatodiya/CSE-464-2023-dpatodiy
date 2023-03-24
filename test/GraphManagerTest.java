@@ -24,19 +24,19 @@ public class GraphManagerTest {
     @Test
     public void bfsPathFound(){
         String expected = "a->b->c->d";
-        String actual = g.graphSearch("a", "d");
-        Assert.assertTrue(expected.equals(actual));
+        Path actual = g.graphSearch("a", "d");
+        Assert.assertTrue(expected.equals(actual.toString()));
     }
 
     @Test
     public void bfsPathNotFound(){
-        String actual = g.graphSearch("a", "a");
+        Path actual = g.graphSearch("a", "a");
         Assert.assertNull(actual);
     }
 
     @Test
     public void bfsPathNotFoundNode(){
-        String actual = g.graphSearch("a", "f");
+        Path actual = g.graphSearch("a", "f");
         Assert.assertNull(actual);
     }
 
