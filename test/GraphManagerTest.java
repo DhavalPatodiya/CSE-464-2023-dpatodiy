@@ -17,6 +17,8 @@ public class GraphManagerTest {
     public void setup() throws Exception {
         g = new GraphManager();
         g.parseGraph("input.dot");
+        g.outputGraphics("expected.jpg", "jpg");
+        g.outputGraphics("expected.png", "png");
     }
 
     @Test
