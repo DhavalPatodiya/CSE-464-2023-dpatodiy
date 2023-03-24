@@ -174,7 +174,7 @@ public class GraphManagerTest {
         int h1 = img1.getHeight();
         int h2 = img2.getHeight();
         if ((w1!=w2)||(h1!=h2)) {
-            System.out.println("Both images should have same dimwnsions");
+            Assert.assertTrue(w1==w2 && h1==h2);
         } else {
             long diff = 0;
             for (int j = 0; j < h1; j++) {
