@@ -138,7 +138,7 @@ public class GraphManagerTest {
         String actualFile = "actual.png";
 
         g.addNode("f");
-        g.outputGraphics(expectedFile, "png");
+        g.outputGraphics(actualFile, "png");
 
         BufferedImage actualImage = ImageIO.read(new File(actualFile));
         DataBuffer actualDataBuffer = actualImage.getData().getDataBuffer();
@@ -160,7 +160,7 @@ public class GraphManagerTest {
         String expectedFile = "expected.jpg";
         String actualFile = "actual.jpg";
 
-        g.outputGraphics(expectedFile, "jpg");
+        g.outputGraphics(actualFile, "jpg");
 
 
         BufferedImage actualImage = ImageIO.read(new File(actualFile));
