@@ -22,6 +22,25 @@ public class GraphManagerTest {
     }
 
     @Test
+    public void bfsPathFound(){
+        String expected = "a->b->c->d";
+        String actual = g.graphSearch("a", "d");
+        Assert.assertTrue(expected.equals(actual));
+    }
+
+    @Test
+    public void bfsPathNotFound(){
+        String actual = g.graphSearch("a", "a");
+        Assert.assertNull(actual);
+    }
+
+    @Test
+    public void bfsPathNotFoundNode(){
+        String actual = g.graphSearch("a", "f");
+        Assert.assertNull(actual);
+    }
+
+    @Test
     public void testParseGraph(){
         Assert.assertEquals(5, g.nodeSize());
         Assert.assertEquals(5, g.edgeSize());
