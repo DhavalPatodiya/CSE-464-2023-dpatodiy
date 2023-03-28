@@ -9,8 +9,10 @@ import java.io.*;
 public class GraphManager {
 
     Graph g;
+    Path p;
     public GraphManager (){
         g = new Graph();
+        p = new Path();
     }
 
     //Feature 1
@@ -90,14 +92,7 @@ public class GraphManager {
         return g.containsEdge(src, dst);
     }
 
-//    public static void main(String args[]) {
-//        GraphManager g = new GraphManager();
-//        g.parseGraph("input.dot");
-//        System.out.println(g.toString());
-//        g.outputGraph("text.txt");
-//        g.addNode("f");
-//        g.outputDOTGraph("expected.dot");
-//        g.outputGraphics("expected.png", "png");
-//    }
-
+    public Path graphSearch(String src, String dst){
+        return p.graphSearch(g, src, dst);
+    }
 }
