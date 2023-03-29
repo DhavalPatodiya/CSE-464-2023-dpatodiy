@@ -9,8 +9,10 @@ import java.io.*;
 public class GraphManager {
 
     Graph g;
+    Path p;
     public GraphManager (){
         g = new Graph();
+        p = new Path();
     }
 
     //Feature 1
@@ -88,6 +90,10 @@ public class GraphManager {
 
     public boolean containsEdge(String src, String dst){
         return g.containsEdge(src, dst);
+    }
+
+    public Path graphSearch(String src, String dst){
+        return p.graphSearch(g, src, dst);
     }
 
 //    public static void main(String args[]) {

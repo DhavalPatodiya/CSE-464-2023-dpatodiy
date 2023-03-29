@@ -22,6 +22,11 @@ public class GraphManagerTest {
     }
 
     @Test
+    public void dfs(){
+        System.out.println(g.graphSearch("b", "e"));
+    }
+
+    @Test
     public void testParseGraph(){
         Assert.assertEquals(5, g.nodeSize());
         Assert.assertEquals(5, g.edgeSize());
