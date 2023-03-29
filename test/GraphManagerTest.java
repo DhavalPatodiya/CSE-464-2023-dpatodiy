@@ -22,27 +22,44 @@ public class GraphManagerTest {
     }
 
     @Test
-    public void bfsPathFound(){
+    public void bfsPathFound() throws Exception{
         String expected = "a->b->c->d";
-        Path actual = g.graphSearch("a", "d", Algorithm.BFS);
+        Path actual = g.graphSearch("a", "d", "BFS");
         Assert.assertTrue(expected.equals(actual.toString()));
     }
 
     @Test
-    public void bfsPathNotFound(){
-        Path actual = g.graphSearch("a", "a", Algorithm.BFS);
+    public void bfsPathNotFound() throws Exception{
+        Path actual = g.graphSearch("a", "a", "BFS");
         Assert.assertNull(actual);
     }
 
     @Test
-    public void bfsPathNotFoundNode(){
-        Path actual = g.graphSearch("a", "f", Algorithm.BFS);
+    public void bfsPathNotFoundNode() throws Exception{
+        Path actual = g.graphSearch("a", "f", "BFS");
         Assert.assertNull(actual);
     }
 
     @Test
-    public void dfs(){
-        System.out.println(g.graphSearch("b", "e", Algorithm.DFS));
+    public void dfs() throws Exception{
+        System.out.println(g.graphSearch("b", "e", "DFS"));
+    }
+
+    @Test
+    public void dfsPathNotFound() throws Exception{
+        Path actual = g.graphSearch("a", "a", "BFS");
+        Assert.assertNull(actual);
+    }
+
+
+    @Test(expected= IllegalArgumentException.class)
+    public void invalidEnumName() throws Exception{
+        System.out.println(g.graphSearch("b", "e", "DMS"));
+    }
+
+    @Test(expected= NullPointerException.class)
+    public void algoNameIsNull() throws Exception{
+        System.out.println(g.graphSearch("b", "e", null));
     }
 
     @Test

@@ -92,7 +92,7 @@ public class GraphManager {
         return g.containsEdge(src, dst);
     }
 
-    public Path graphSearch(String src, String dst, Algorithm algo){
-        return p.graphSearch(g, src, dst, algo);
+    public Path graphSearch(String src, String dst, String algo) throws Exception{
+        return p.graphSearch(g, src, dst, Algorithm.valueOf(algo));
     }
 }

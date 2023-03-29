@@ -23,13 +23,12 @@ public class Path {
         if(!(g.map.containsKey(src) && g.map.containsKey(dst)))
             return null;
         List<String> pathFound = null;
-        if(algo.BFS.toString().equals("BFS")) {
+
+        if(algo.toString().equals("BFS")) {
             pathFound = bfs(g, src, dst);
         }
-        else if(algo.DFS.toString().equals("DFS")){
+        else {
             pathFound = dfs(g, src, dst);
-        }else{
-            return null;
         }
 
         StringBuilder sb  = new StringBuilder();
