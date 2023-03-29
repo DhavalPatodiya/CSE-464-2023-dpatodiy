@@ -21,6 +21,7 @@ public class GraphManagerTest {
         g.outputGraphics("expected.png", "png");
     }
 
+    // a-d poth exists
     @Test
     public void bfsPathFound() throws Exception{
         String expected = "a->b->c->d";
@@ -28,35 +29,49 @@ public class GraphManagerTest {
         Assert.assertTrue(expected.equals(actual.toString()));
     }
 
+    //from a to a there is no path like a->b->a. there is no path to return to a once you leave a
     @Test
     public void bfsPathNotFound() throws Exception{
         Path actual = g.graphSearch("a", "a", "BFS");
         Assert.assertNull(actual);
     }
 
+    // a-f path doesn't exists as f doesn't exists.
     @Test
     public void bfsPathNotFoundNode() throws Exception{
         Path actual = g.graphSearch("a", "f", "BFS");
         Assert.assertNull(actual);
     }
 
+    //b-e path exists
     @Test
     public void dfs() throws Exception{
-        System.out.println(g.graphSearch("b", "e", "DFS"));
+        String expected = "b->c->d->e";
+        Path actual = g.graphSearch("b", "e", "DFS");
+        Assert.assertEquals(expected, actual.toString());
     }
 
+    //from a to a there is no path like a->b->a. there is no path to return to a once you leave a
     @Test
     public void dfsPathNotFound() throws Exception{
         Path actual = g.graphSearch("a", "a", "BFS");
         Assert.assertNull(actual);
     }
 
+    // a-g path doesn't exists as g doesn't exists.
+    @Test
+    public void dfsPathNodeNotFound() throws Exception{
+        Path actual = g.graphSearch("a", "g", "BFS");
+        Assert.assertNull(actual);
+    }
 
+    //IllegalArgumentException thrown when algo is other than BFS or DFS
     @Test(expected= IllegalArgumentException.class)
     public void invalidEnumName() throws Exception{
         System.out.println(g.graphSearch("b", "e", "DMS"));
     }
 
+    //NullPointerException thrown when algo is null
     @Test(expected= NullPointerException.class)
     public void algoNameIsNull() throws Exception{
         System.out.println(g.graphSearch("b", "e", null));
