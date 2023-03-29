@@ -22,8 +22,27 @@ public class GraphManagerTest {
     }
 
     @Test
+    public void bfsPathFound(){
+        String expected = "a->b->c->d";
+        Path actual = g.graphSearch("a", "d", Algorithm.BFS);
+        Assert.assertTrue(expected.equals(actual.toString()));
+    }
+
+    @Test
+    public void bfsPathNotFound(){
+        Path actual = g.graphSearch("a", "a", Algorithm.BFS);
+        Assert.assertNull(actual);
+    }
+
+    @Test
+    public void bfsPathNotFoundNode(){
+        Path actual = g.graphSearch("a", "f", Algorithm.BFS);
+        Assert.assertNull(actual);
+    }
+
+    @Test
     public void dfs(){
-        System.out.println(g.graphSearch("b", "e"));
+        System.out.println(g.graphSearch("b", "e", Algorithm.DFS));
     }
 
     @Test
