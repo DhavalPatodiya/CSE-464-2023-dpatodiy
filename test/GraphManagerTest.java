@@ -25,21 +25,21 @@ public class GraphManagerTest {
     @Test
     public void bfsPathFound() throws Exception{
         String expected = "a->b->c->d";
-        Path actual = g.graphSearch("a", "d", "BFS");
+        Path actual = g.graphSearch("a", "d", Algorithm.BFS);
         Assert.assertTrue(expected.equals(actual.toString()));
     }
 
     //from a to a there is no path like a->b->a. there is no path to return to a once you leave a
     @Test
     public void bfsPathNotFound() throws Exception{
-        Path actual = g.graphSearch("a", "a", "BFS");
+        Path actual = g.graphSearch("a", "a", Algorithm.BFS);
         Assert.assertNull(actual);
     }
 
     // a-f path doesn't exists as f doesn't exists.
     @Test
     public void bfsPathNotFoundNode() throws Exception{
-        Path actual = g.graphSearch("a", "f", "BFS");
+        Path actual = g.graphSearch("a", "f", Algorithm.BFS);
         Assert.assertNull(actual);
     }
 
@@ -47,28 +47,28 @@ public class GraphManagerTest {
     @Test
     public void dfs() throws Exception{
         String expected = "b->c->d->e";
-        Path actual = g.graphSearch("b", "e", "DFS");
+        Path actual = g.graphSearch("b", "e", Algorithm.DFS);
         Assert.assertEquals(expected, actual.toString());
     }
 
     //from a to a there is no path like a->b->a. there is no path to return to a once you leave a
     @Test
     public void dfsPathNotFound() throws Exception{
-        Path actual = g.graphSearch("a", "a", "BFS");
+        Path actual = g.graphSearch("a", "a", Algorithm.DFS);
         Assert.assertNull(actual);
     }
 
     // a-g path doesn't exists as g doesn't exists.
     @Test
     public void dfsPathNodeNotFound() throws Exception{
-        Path actual = g.graphSearch("a", "g", "BFS");
+        Path actual = g.graphSearch("a", "g", Algorithm.DFS);
         Assert.assertNull(actual);
     }
 
     //IllegalArgumentException thrown when algo is other than BFS or DFS
     @Test(expected= IllegalArgumentException.class)
     public void invalidEnumName() throws Exception{
-        System.out.println(g.graphSearch("b", "e", "DMS"));
+        System.out.println(g.graphSearch("b", "e", Algorithm.valueOf("DMS")));
     }
 
     //NullPointerException thrown when algo is null
