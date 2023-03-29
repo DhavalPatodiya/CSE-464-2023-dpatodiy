@@ -4,6 +4,6 @@ a -> e
 b -> c
 c -> d
 d -> e
-e -> a
+e
 f
 }
