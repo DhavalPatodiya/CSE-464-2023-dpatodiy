@@ -5,4 +5,5 @@ digraph {
     c -> d
     d -> e
     a -> e
+    e
 }
