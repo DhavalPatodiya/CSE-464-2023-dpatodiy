@@ -77,6 +77,7 @@ public class GraphManagerTest {
         g.graphSearch("b", "e", null);
     }
 
+    // parseGraph() success
     @Test
     public void testParseGraph(){
         Assert.assertEquals(5, g.nodeSize());
@@ -88,6 +89,7 @@ public class GraphManagerTest {
         Assert.assertTrue(g.containsEdge("a", "e"));
     }
 
+    // toString() success
     @Test
     public void testToString(){
         String actual = g.toString();
@@ -103,6 +105,7 @@ public class GraphManagerTest {
         Assert.assertTrue(expected.equals(actual));
     }
 
+    // outputGraph() success
     @Test
     public void testOutputGraph() throws Exception{
         String expectedFile = "expected.txt";
@@ -117,6 +120,7 @@ public class GraphManagerTest {
         Assert.assertEquals(expected, actual);
     }
 
+    // AddNode() success
     @Test
     public void testAddNode(){
         g.addNode("f");
@@ -124,6 +128,7 @@ public class GraphManagerTest {
         Assert.assertTrue(g.containsNode("f"));
     }
 
+    // RemoveNode() success
     @Test
     public void testRemoveNode(){
         g.removeNode("e");
@@ -131,6 +136,7 @@ public class GraphManagerTest {
         Assert.assertFalse(g.containsNode("e"));
     }
 
+    // AddNodes() success
     @Test
     public void testAddNodes(){
         String nodes[] = new String[]{"f", "g"};
@@ -141,6 +147,7 @@ public class GraphManagerTest {
         Assert.assertTrue(g.containsNode("g"));
     }
 
+    // RemoveNodes() success
     @Test
     public void testRemoveNodes(){
         String removenodes[] = new String[]{"f", "g", "a"};
@@ -161,6 +168,7 @@ public class GraphManagerTest {
         Assert.assertFalse(g.containsEdge("a", "b"));
     }
 
+    // AddEdge() success
     @Test
     public void testAddEdge(){
         g.addEdge("e", "a");
@@ -169,6 +177,7 @@ public class GraphManagerTest {
         Assert.assertEquals(6, g.edgeSize());
     }
 
+    // RemoveEdge() success
     @Test
     public void testRemoveEdge(){
         g.addEdge("e", "a");
@@ -180,6 +189,7 @@ public class GraphManagerTest {
         Assert.assertFalse(g.containsEdge("e", "a"));
     }
 
+    // outputDOTGraph() success
     @Test
     public void testOutputDOTGraph() throws Exception{
         String expectedFile = "expected.dot";
@@ -194,6 +204,7 @@ public class GraphManagerTest {
         Assert.assertEquals(expected, actual);
     }
 
+    // outputDOTGraphicPNG() success
     @Test
     public void testOutputGraphicsPNG() throws Exception{
         String expectedFile = "expected.png";
@@ -217,6 +228,7 @@ public class GraphManagerTest {
         }
     }
 
+    // outputDOTGraphicJPG() success
     @Test
     public void testOutputGraphicsJPG() throws Exception {
         String expectedFile = "expected.jpg";
@@ -240,6 +252,7 @@ public class GraphManagerTest {
         }
     }
 
+    // outputDOTGraphics() throws error
     @Test(expected= IOException.class)
     public void testOutputGraphicsUnSupportedTypes() throws Exception {
         String actualFile = "actual.pdf";
