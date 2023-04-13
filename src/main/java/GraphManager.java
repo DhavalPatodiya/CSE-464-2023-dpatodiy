@@ -3,10 +3,9 @@ import java.io.*;
 public class GraphManager {
 
     Graph graph;
-    Path path;
+
     public GraphManager (){
         graph = new Graph();
-        path = new Path();
     }
 
     //region Feature1
@@ -93,7 +92,7 @@ public class GraphManager {
 
     //region GraphSearch
     public Path graphSearch(String src, String dst, Algorithm algo) throws Exception{
-        /*Search path = null;
+        Path path = null;
 
         if(algo.toString().equals("BFS")){
             path = new BFS();
@@ -101,7 +100,7 @@ public class GraphManager {
             path = new DFS();
         }else{
             return null;
-        }*/
+        }
         return path.graphSearch(graph, src, dst, algo);
     }
     //endregion

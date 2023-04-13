@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class DFS extends Search{
+public class DFS extends Path {
     public DFS(String path) {
         super(path);
     }
@@ -11,27 +11,15 @@ public class DFS extends Search{
     }
 
     @Override
-    public Search graphSearch(Graph g, String src, String dst, Algorithm algo) {
-        List<String> pathFound = null;
-        StringBuilder sb  = new StringBuilder();
-        List<String> path = new ArrayList<>();
-        int[] visited = new int[26];
-
+    public Path graphSearch(Graph g, String src, String dst, Algorithm algo) {
         if (!(g.map.containsKey(src) && g.map.containsKey(dst))){
             return null;
         }
 
-        path.add(src);
-        pathFound = dfs(g, src, dst, visited, path);
+        pathList.add(src);
+        pathFound = dfs(g, src, dst, visited, pathList);
 
-        if(pathFound!=null){
-            for(String node : pathFound){
-                sb.append(node + "->");
-            }
-
-            sb = sb.deleteCharAt(sb.length()-1);
-            sb = sb.deleteCharAt(sb.length()-1);
-        }
+        listToString();
         return pathFound == null ? null : new DFS(sb.toString());
     }
 
