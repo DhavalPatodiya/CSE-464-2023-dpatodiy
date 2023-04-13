@@ -68,13 +68,13 @@ public class GraphManagerTest {
     //IllegalArgumentException thrown when algo is other than BFS or DFS
     @Test(expected= IllegalArgumentException.class)
     public void invalidEnumName() throws Exception{
-        System.out.println(g.graphSearch("b", "e", Algorithm.valueOf("DMS")));
+        g.graphSearch("b", "e", Algorithm.valueOf("DMS"));
     }
 
     //NullPointerException thrown when algo is null
     @Test(expected= NullPointerException.class)
     public void algoNameIsNull() throws Exception{
-        System.out.println(g.graphSearch("b", "e", null));
+        g.graphSearch("b", "e", null);
     }
 
     @Test
@@ -200,7 +200,6 @@ public class GraphManagerTest {
         String actualFile = "actual.png";
 
         g.outputGraphics(actualFile, "png");
-       // g.outputGraphics(expectedFile, "png");
 
         BufferedImage actualImage = ImageIO.read(new File(actualFile));
         DataBuffer actualDataBuffer = actualImage.getData().getDataBuffer();
@@ -224,7 +223,6 @@ public class GraphManagerTest {
         String actualFile = "actual.jpg";
 
         g.outputGraphics(actualFile, "jpg");
-      //  g.outputGraphics(expectedFile, "jpg");
 
         BufferedImage actualImage = ImageIO.read(new File(actualFile));
         DataBuffer actualDataBuffer = actualImage.getData().getDataBuffer();
