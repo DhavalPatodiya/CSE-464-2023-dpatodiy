@@ -7,7 +7,6 @@ public class Path {
     public String path = null;
 
     public Path(){
-
     }
 
     public Path(String path){
@@ -19,20 +18,19 @@ public class Path {
         return path;
     }
 
-    public Path graphSearch( Graph g, String src, String dst, Algorithm algo){
-        if(!(g.map.containsKey(src) && g.map.containsKey(dst)))
-            return null;
+    public Path graphSearch( Graph g, String src, String dst, Algorithm algo) {
         List<String> pathFound = null;
+        StringBuilder sb  = new StringBuilder();
 
-        if(algo.toString().equals("BFS")) {
+        if (!(g.map.containsKey(src) && g.map.containsKey(dst))){
+            return null;
+        }
+        else if(algo.toString().equals("BFS")) {
             pathFound = bfs(g, src, dst);
         }
         else {
             pathFound = dfs(g, src, dst);
         }
-
-        StringBuilder sb  = new StringBuilder();
-
 
         if(pathFound!=null){
             for(String node : pathFound){
@@ -42,18 +40,17 @@ public class Path {
             sb = sb.deleteCharAt(sb.length()-1);
             sb = sb.deleteCharAt(sb.length()-1);
         }
-
         return pathFound == null ? null : new Path(sb.toString());
-
     }
 
     public List<String> bfs(Graph g, String src, String dst){
         Queue<List<String>> q = new ArrayDeque<>();
         List<String> pathFound = null;
         List<String> path = new ArrayList<>();
+        int[] visited = new int[26];
+
         path.add(src);
         q.offer(path);
-        int[] visited = new int[26];
 
         while(!q.isEmpty()) {
             path = q.poll();
@@ -74,9 +71,7 @@ public class Path {
                     newPath.add(child);
                     q.offer(newPath);
                 }
-
             }
-
             if (found) break;
         }
         return pathFound;
@@ -84,15 +79,13 @@ public class Path {
 
     public List<String> dfs(Graph g, String src, String dst){
         List<String> path = new ArrayList<>();
-        path.add(src);
-
         int[] visited = new int[26];
 
+        path.add(src);
         return dfs(g, src, dst, visited, path);
     }
 
     public List<String> dfs(Graph g,String curr, String dst, int[] visited, List<String> path){
-
         for(String child : g.map.get(curr)){
             if(dst.equals(child)){
                 path.add(child);

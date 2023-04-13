@@ -23,12 +23,12 @@ public class Graph {
 
     public void parseGraph(String filepath) throws Exception{
         String g = null;
+        String[] gString = null;
         InputStream dot = new FileInputStream(filepath);
+
         g = new Parser().read(dot).toString();
         dot.close();
-
-
-        String[] gString = g.split("\n");
+        gString = g.split("\n");
 
         for(int i=1; i<gString.length-1; i++){
             String[] nodes = gString[i].split("->");
@@ -89,6 +89,7 @@ public class Graph {
     @Override
     public String toString(){
         StringBuilder sb = new StringBuilder();
+
         sb.append("Number of nodes in a graph : " + String.valueOf(nodesCount()));
         sb.append("\n");
         sb.append("Number of edges in a graph : " + String.valueOf(edgesCount()));
@@ -110,7 +111,6 @@ public class Graph {
         StringBuilder sb = new StringBuilder();
         sb.append("digraph {");
 
-
         for(String key : map.keySet()){
             if(map.get(key).size() == 0){
                 sb.append("\n");
@@ -130,6 +130,7 @@ public class Graph {
         String sgraph = outputDOTGraph();
         MutableGraph graph = null;
         InputStream dot = new ByteArrayInputStream(sgraph.getBytes());
+
         graph = new Parser().read(dot);
         dot.close();
 
@@ -155,6 +156,4 @@ public class Graph {
     public boolean containsEdge(String src, String dst){
         return (map.containsKey(src) && map.get(src).contains(dst));
     }
-
-
 }

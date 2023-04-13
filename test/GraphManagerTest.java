@@ -105,15 +105,15 @@ public class GraphManagerTest {
 
     @Test
     public void testOutputGraph() throws Exception{
-        g.addEdge("e", "a");
-
         String expectedFile = "expected.txt";
         String actualFile = "actual.txt";
+        String expected = null, actual = null;
 
+        g.addEdge("e", "a");
         g.outputGraph("actual.txt");
 
-        String expected = Files.readString(Paths.get(expectedFile));
-        String actual = Files.readString(Paths.get(actualFile));
+        expected = Files.readString(Paths.get(expectedFile));
+        actual = Files.readString(Paths.get(actualFile));
         Assert.assertEquals(expected, actual);
     }
 
@@ -134,6 +134,7 @@ public class GraphManagerTest {
     @Test
     public void testAddNodes(){
         String nodes[] = new String[]{"f", "g"};
+
         g.addNodes(nodes);
         Assert.assertEquals(7, g.nodeSize());
         Assert.assertTrue(g.containsNode("f"));
@@ -144,6 +145,7 @@ public class GraphManagerTest {
     public void testRemoveNodes(){
         String removenodes[] = new String[]{"f", "g", "a"};
         String nodes[] = new String[]{"f", "g"};
+
         g.addNodes(nodes);
         Assert.assertEquals(7, g.nodeSize());
         Assert.assertTrue(g.containsNode("f"));
@@ -172,6 +174,7 @@ public class GraphManagerTest {
         g.addEdge("e", "a");
         Assert.assertEquals(6, g.edgeSize());
         Assert.assertTrue(g.containsEdge("e", "a"));
+
         g.removeEdge("e", "a");
         Assert.assertEquals(5, g.edgeSize());
         Assert.assertFalse(g.containsEdge("e", "a"));
@@ -181,12 +184,13 @@ public class GraphManagerTest {
     public void testOutputDOTGraph() throws Exception{
         String expectedFile = "expected.dot";
         String actualFile = "actual.dot";
+        String expected = null, actual = null;
 
         g.addNode("f");
-
         g.outputDOTGraph(actualFile);
-        String expected = Files.readString(Paths.get(expectedFile));
-        String actual = Files.readString(Paths.get(actualFile));
+
+        expected = Files.readString(Paths.get(expectedFile));
+        actual = Files.readString(Paths.get(actualFile));
         Assert.assertEquals(expected, actual);
     }
 
