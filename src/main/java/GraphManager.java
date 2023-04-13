@@ -1,105 +1,99 @@
-import guru.nidi.graphviz.engine.Format;
-import guru.nidi.graphviz.engine.Graphviz;
-
-import javax.imageio.ImageIO;
-import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.*;
 
 public class GraphManager {
 
-    Graph g;
-    Path p;
+    Graph graph;
+    Path path;
     public GraphManager (){
-        g = new Graph();
-        p = new Path();
+        graph = new Graph();
+        path = new Path();
     }
 
     //region Feature1
     public void parseGraph(String filepath) throws Exception{
-        g.parseGraph(filepath);
+        graph.parseGraph(filepath);
     }
 
     @Override
     public String toString(){
-        return g.toString();
+        return graph.toString();
     }
 
     // only works for txt file
     public void outputGraph(String filepath) throws Exception {
-        String text = g.toString();
+        String graphText = graph.toString();
         BufferedWriter writer = new BufferedWriter(new FileWriter(filepath));
-        writer.write(text);
+        writer.write(graphText);
         writer.close();
     }
     //endregion
 
     //region Feature2
     public void addNode(String label){
-        g.addNode(label);
+        graph.addNode(label);
     }
 
     public void removeNode(String label){
-        g.removeNode(label);
+        graph.removeNode(label);
     }
 
     public void addNodes(String[] labels){
         for(String label : labels){
-            g.addNode(label);
+            graph.addNode(label);
         }
     }
 
     public void removeNodes(String[] labels){
         for(String label : labels){
-            g.removeNode(label);
+            graph.removeNode(label);
         }
     }
     //endregion
 
     //region Feature3
     public void addEdge(String srcLabel, String dstLabel){
-        g.addEdges(srcLabel, dstLabel);
+        graph.addEdges(srcLabel, dstLabel);
     }
 
     public void removeEdge(String srcLabel, String dstLabel){
-        g.removeEdges(srcLabel, dstLabel);
+        graph.removeEdges(srcLabel, dstLabel);
     }
     //endregion
 
     //region Feature4
     public void outputDOTGraph(String filepath) throws Exception{
-        String text = g.outputDOTGraph();
+        String graphText = graph.outputDOTGraph();
         BufferedWriter writer = new BufferedWriter(new FileWriter(filepath));
-        writer.write(text);
+        writer.write(graphText);
         writer.close();
     }
 
     public void outputGraphics(String path, String format) throws Exception{
-        g.outputGraphics(path, format);
+        graph.outputGraphics(path, format);
     }
     //endregion
 
     //region SupportedMethods
     public int nodeSize(){
-        return g.nodesCount();
+        return graph.nodesCount();
     }
 
     public int edgeSize(){
-        return g.edgesCount();
+        return graph.edgesCount();
     }
 
     public boolean containsNode(String label){
-        return g.containsNode(label);
+        return graph.containsNode(label);
     }
 
     public boolean containsEdge(String src, String dst){
-        return g.containsEdge(src, dst);
+        return graph.containsEdge(src, dst);
     }
     //endregion
 
     //region GraphSearch
     public Path graphSearch(String src, String dst, Algorithm algo) throws Exception{
-        return p.graphSearch(g, src, dst, algo);
+        return path.graphSearch(graph, src, dst, algo);
     }
     //endregion
 }

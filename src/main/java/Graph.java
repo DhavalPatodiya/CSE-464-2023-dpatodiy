@@ -7,11 +7,9 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
-import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.*;
 
 public class Graph {
 
@@ -22,13 +20,13 @@ public class Graph {
     }
 
     public void parseGraph(String filepath) throws Exception{
-        String g = null;
+        String graphText = null;
         String[] gString = null;
         InputStream dot = new FileInputStream(filepath);
 
-        g = new Parser().read(dot).toString();
+        graphText = new Parser().read(dot).toString();
         dot.close();
-        gString = g.split("\n");
+        gString = graphText.split("\n");
 
         for(int i=1; i<gString.length-1; i++){
             String[] nodes = gString[i].split("->");
