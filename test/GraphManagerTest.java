@@ -252,7 +252,7 @@ public class GraphManagerTest {
         }
     }
 
-    // outputDOTGraphics() throws error
+    // outputDOTGraphics() thriws error.
     @Test(expected= IOException.class)
     public void testOutputGraphicsUnSupportedTypes() throws Exception {
         String actualFile = "actual.pdf";
