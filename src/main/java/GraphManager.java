@@ -10,12 +10,13 @@ public class GraphManager {
 
     Graph g;
     Path p;
+
     public GraphManager (){
         g = new Graph();
         p = new Path();
     }
 
-    //Feature 1
+    //region Feature1
     public void parseGraph(String filepath) throws Exception{
         g.parseGraph(filepath);
     }
@@ -32,9 +33,9 @@ public class GraphManager {
         writer.write(text);
         writer.close();
     }
+    //endregion
 
-    //Feature 2:
-
+    //region Feature2
     public void addNode(String label){
         g.addNode(label);
     }
@@ -54,8 +55,9 @@ public class GraphManager {
             g.removeNode(label);
         }
     }
+    //endregion
 
-    // feature 3
+    //region Feature3
     public void addEdge(String srcLabel, String dstLabel){
         g.addEdges(srcLabel, dstLabel);
     }
@@ -63,8 +65,9 @@ public class GraphManager {
     public void removeEdge(String srcLabel, String dstLabel){
         g.removeEdges(srcLabel, dstLabel);
     }
+    //endregion
 
-    //feature 4
+    //region Feature4
     public void outputDOTGraph(String filepath) throws Exception{
         String text = g.outputDOTGraph();
         BufferedWriter writer = new BufferedWriter(new FileWriter(filepath));
@@ -75,7 +78,9 @@ public class GraphManager {
     public void outputGraphics(String path, String format) throws Exception{
         g.outputGraphics(path, format);
     }
+    //endregion
 
+    //region support
     public int nodeSize(){
         return g.nodesCount();
     }
@@ -91,8 +96,11 @@ public class GraphManager {
     public boolean containsEdge(String src, String dst){
         return g.containsEdge(src, dst);
     }
+    //endregion
 
+    //region GraphSearch
     public Path graphSearch(String src, String dst, Algorithm algo) throws Exception{
         return p.graphSearch(g, src, dst, algo);
     }
+    //endregion
 }
