@@ -92,16 +92,15 @@ public class GraphManager {
 
     //region GraphSearch
     public Path graphSearch(String src, String dst, Algorithm algo) throws Exception{
-        Path path = null;
+        Search search = null;
 
         if(algo.toString().equals("BFS")){
-            path = new BFS();
+            search = new Search(new BFS());
         }else if(algo.toString().equals("DFS")){
-            path = new DFS();
-        }else{
-            return null;
+            search = new Search(new DFS());
         }
-        return path.graphSearch(graph, src, dst, algo);
+
+        return search.graphSearchByAlgo(graph, src, dst, algo);
     }
     //endregion
 }

@@ -12,18 +12,19 @@ public class DFS extends Path {
 
     @Override
     public Path graphSearch(Graph g, String src, String dst, Algorithm algo) {
+        System.out.println("DFS");
         if (!(g.map.containsKey(src) && g.map.containsKey(dst))){
             return null;
         }
 
         pathList.add(src);
-        pathFound = dfs(g, src, dst, visited, pathList);
+        pathFound = algo(g, src, dst, visited, pathList);
 
         listToString();
         return pathFound == null ? null : new DFS(sb.toString());
     }
 
-    public List<String> dfs(Graph g,String curr, String dst, int[] visited, List<String> path){
+    public List<String> algo(Graph g,String curr, String dst, int[] visited, List<String> path){
         for(String child : g.map.get(curr)){
             if(dst.equals(child)){
                 path.add(child);
@@ -33,7 +34,11 @@ public class DFS extends Path {
                 visited[child.charAt(0) - 'a'] = 1;
                 List<String> newPath = new ArrayList<>(path);
                 newPath.add(child);
-                return dfs(g, child, dst, visited, newPath);
+
+                List<String> cpath = algo(g, child, dst, visited, newPath);
+                if(cpath!=null){
+                    return cpath;
+                }
             }
         }
 

@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Path {
+abstract class Path {
     public String path = null;
     List<String> pathFound = null;
     StringBuilder sb  = new StringBuilder();
@@ -32,5 +32,16 @@ public abstract class Path {
     @Override
     public String toString(){
         return path;
+    }
+}
+
+class Search{
+    Path path;
+    public Search(Path path){
+        this.path = path;
+    }
+
+    public Path graphSearchByAlgo(Graph g, String src, String dst, Algorithm algo){
+        return path.graphSearch(g, src, dst, algo);
     }
 }
