@@ -40,7 +40,7 @@ public class GraphManagerTest {
         Assert.assertTrue(expected.equals(actual.toString()));
     }
 
-    // a-i poth exists
+    // a-c poth exists
     @Test
     public void randomSearchPathFound() throws Exception{
         Path actual = randomg.graphSearch("a", "c", Algorithm.RANDOM);

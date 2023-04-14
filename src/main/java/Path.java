@@ -9,7 +9,6 @@ abstract class Path {
     int[] visited = new int[26];
 
     public Path() {
-
     }
 
     public abstract Path graphSearch(Graph g, String src, String dst, Algorithm algo) ;
