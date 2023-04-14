@@ -15,6 +15,7 @@ public class BFS extends Path {
 
     @Override
     public Path graphSearch(Graph g, String src, String dst, Algorithm algo) {
+        System.out.println("BFS");
         if (!(g.map.containsKey(src) && g.map.containsKey(dst))){
             return null;
         }

@@ -12,7 +12,7 @@ public class DFS extends Path {
 
     @Override
     public Path graphSearch(Graph g, String src, String dst, Algorithm algo) {
-        System.out.println("DFS");
+
         if (!(g.map.containsKey(src) && g.map.containsKey(dst))){
             return null;
         }
@@ -25,6 +25,7 @@ public class DFS extends Path {
     }
 
     public List<String> algo(Graph g,String curr, String dst, int[] visited, List<String> path){
+        System.out.println("DFS");
         for(String child : g.map.get(curr)){
             if(dst.equals(child)){
                 path.add(child);

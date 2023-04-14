@@ -1,4 +1,5 @@
 public enum Algorithm {
         DFS,
-        BFS
+        BFS,
+        RANDOM
 }

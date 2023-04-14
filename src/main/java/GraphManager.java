@@ -98,6 +98,8 @@ public class GraphManager {
             search = new Search(new BFS());
         }else if(algo.toString().equals("DFS")){
             search = new Search(new DFS());
+        }else{
+            search = new Search(new Random());
         }
 
         return search.graphSearchByAlgo(graph, src, dst, algo);
