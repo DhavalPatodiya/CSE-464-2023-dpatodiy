@@ -12,11 +12,14 @@ import java.nio.file.Paths;
 
 public class GraphManagerTest {
     GraphManager g;
+    GraphManager randomg;
 
     @Before
     public void setup() throws Exception {
         g = new GraphManager();
+        randomg = new GraphManager();
         g.parseGraph("input.dot");
+        randomg.parseGraph("randomsearch.dot");
         g.outputGraphics("expected.jpg", "jpg");
         g.outputGraphics("expected.png", "png");
     }
@@ -27,6 +30,21 @@ public class GraphManagerTest {
         String expected = "a->b->c->d";
         Path actual = g.graphSearch("a", "d", Algorithm.BFS);
         Assert.assertTrue(expected.equals(actual.toString()));
+    }
+
+    // a-h poth exists
+    @Test
+    public void dfsPathFound() throws Exception{
+        String expected = "a->b->c->d";
+        Path actual = g.graphSearch("a", "d", Algorithm.DFS);
+        Assert.assertTrue(expected.equals(actual.toString()));
+    }
+
+    // a-c poth exists
+    @Test
+    public void randomSearchPathFound() throws Exception{
+        Path actual = randomg.graphSearch("a", "c", Algorithm.RANDOM);
+        System.out.println(actual.toString());
     }
 
     //from a to a there is no path like a->b->a. there is no path to return to a once you leave a
@@ -68,15 +86,16 @@ public class GraphManagerTest {
     //IllegalArgumentException thrown when algo is other than BFS or DFS
     @Test(expected= IllegalArgumentException.class)
     public void invalidEnumName() throws Exception{
-        System.out.println(g.graphSearch("b", "e", Algorithm.valueOf("DMS")));
+        g.graphSearch("b", "e", Algorithm.valueOf("DMS"));
     }
 
     //NullPointerException thrown when algo is null
     @Test(expected= NullPointerException.class)
     public void algoNameIsNull() throws Exception{
-        System.out.println(g.graphSearch("b", "e", null));
+        g.graphSearch("b", "e", null);
     }
 
+    // parseGraph() success
     @Test
     public void testParseGraph(){
         Assert.assertEquals(5, g.nodeSize());
@@ -88,6 +107,7 @@ public class GraphManagerTest {
         Assert.assertTrue(g.containsEdge("a", "e"));
     }
 
+    // toString() success
     @Test
     public void testToString(){
         String actual = g.toString();
@@ -103,20 +123,22 @@ public class GraphManagerTest {
         Assert.assertTrue(expected.equals(actual));
     }
 
+    // outputGraph() success
     @Test
     public void testOutputGraph() throws Exception{
-        g.addEdge("e", "a");
-
         String expectedFile = "expected.txt";
         String actualFile = "actual.txt";
+        String expected = null, actual = null;
 
+        g.addEdge("e", "a");
         g.outputGraph("actual.txt");
 
-        String expected = Files.readString(Paths.get(expectedFile));
-        String actual = Files.readString(Paths.get(actualFile));
+        expected = Files.readString(Paths.get(expectedFile));
+        actual = Files.readString(Paths.get(actualFile));
         Assert.assertEquals(expected, actual);
     }
 
+    // AddNode() success
     @Test
     public void testAddNode(){
         g.addNode("f");
@@ -124,6 +146,7 @@ public class GraphManagerTest {
         Assert.assertTrue(g.containsNode("f"));
     }
 
+    // RemoveNode() success
     @Test
     public void testRemoveNode(){
         g.removeNode("e");
@@ -131,19 +154,23 @@ public class GraphManagerTest {
         Assert.assertFalse(g.containsNode("e"));
     }
 
+    // AddNodes() success
     @Test
     public void testAddNodes(){
         String nodes[] = new String[]{"f", "g"};
+
         g.addNodes(nodes);
         Assert.assertEquals(7, g.nodeSize());
         Assert.assertTrue(g.containsNode("f"));
         Assert.assertTrue(g.containsNode("g"));
     }
 
+    // RemoveNodes() success
     @Test
     public void testRemoveNodes(){
         String removenodes[] = new String[]{"f", "g", "a"};
         String nodes[] = new String[]{"f", "g"};
+
         g.addNodes(nodes);
         Assert.assertEquals(7, g.nodeSize());
         Assert.assertTrue(g.containsNode("f"));
@@ -159,6 +186,7 @@ public class GraphManagerTest {
         Assert.assertFalse(g.containsEdge("a", "b"));
     }
 
+    // AddEdge() success
     @Test
     public void testAddEdge(){
         g.addEdge("e", "a");
@@ -167,36 +195,40 @@ public class GraphManagerTest {
         Assert.assertEquals(6, g.edgeSize());
     }
 
+    // RemoveEdge() success
     @Test
     public void testRemoveEdge(){
         g.addEdge("e", "a");
         Assert.assertEquals(6, g.edgeSize());
         Assert.assertTrue(g.containsEdge("e", "a"));
+
         g.removeEdge("e", "a");
         Assert.assertEquals(5, g.edgeSize());
         Assert.assertFalse(g.containsEdge("e", "a"));
     }
 
+    // outputDOTGraph() success
     @Test
     public void testOutputDOTGraph() throws Exception{
         String expectedFile = "expected.dot";
         String actualFile = "actual.dot";
+        String expected = null, actual = null;
 
         g.addNode("f");
-
         g.outputDOTGraph(actualFile);
-        String expected = Files.readString(Paths.get(expectedFile));
-        String actual = Files.readString(Paths.get(actualFile));
+
+        expected = Files.readString(Paths.get(expectedFile));
+        actual = Files.readString(Paths.get(actualFile));
         Assert.assertEquals(expected, actual);
     }
 
+    // outputDOTGraphicPNG() success
     @Test
     public void testOutputGraphicsPNG() throws Exception{
         String expectedFile = "expected.png";
         String actualFile = "actual.png";
 
         g.outputGraphics(actualFile, "png");
-       // g.outputGraphics(expectedFile, "png");
 
         BufferedImage actualImage = ImageIO.read(new File(actualFile));
         DataBuffer actualDataBuffer = actualImage.getData().getDataBuffer();
@@ -214,13 +246,13 @@ public class GraphManagerTest {
         }
     }
 
+    // outputDOTGraphicJPG() success
     @Test
     public void testOutputGraphicsJPG() throws Exception {
         String expectedFile = "expected.jpg";
         String actualFile = "actual.jpg";
 
         g.outputGraphics(actualFile, "jpg");
-      //  g.outputGraphics(expectedFile, "jpg");
 
         BufferedImage actualImage = ImageIO.read(new File(actualFile));
         DataBuffer actualDataBuffer = actualImage.getData().getDataBuffer();
@@ -238,6 +270,7 @@ public class GraphManagerTest {
         }
     }
 
+    // outputDOTGraphics() thriws error.
     @Test(expected= IOException.class)
     public void testOutputGraphicsUnSupportedTypes() throws Exception {
         String actualFile = "actual.pdf";
